@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
           axisY: {
             offset: 60,
             labelInterpolationFnc: function(value) {
-              return value + ' K'
+              return value + ' M'
             },
             scaleMinSpace: 16
           },
@@ -94,7 +94,7 @@ export class DashboardComponent implements OnInit {
       var monthCasesChart = new Chartist.Line('#monthCasesChart', dataMonthCasesChart, optionsMonthCasesChart);
 
       this.startAnimationForLineChart(monthCasesChart);
-      
+
 
       /* ----------==========     Last Week Cases    ==========---------- */
 
@@ -129,9 +129,67 @@ export class DashboardComponent implements OnInit {
           }
         }]
       ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', dataWeekChart, optionsWeekChart, responsiveOptions);
+      var websiteViewsChart = new Chartist.Bar('#weekCasesChart', dataWeekChart, optionsWeekChart, responsiveOptions);
 
       this.startAnimationForBarChart(websiteViewsChart);
+
+      /* ----------==========     Monthly Deaths    ==========---------- */
+
+      const dataMonthDeathsChart: any = {
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May','Jun'],
+        series: [
+            [0.043, 0.066, 3.672, 6.695, 4.650, 4.951]
+        ]
+      };
+
+      const optionsMonthDeathsChart: any = {
+            axisY: {
+              offset: 60,
+              labelInterpolationFnc: function(value) {
+                return value + ' K'
+              },
+              scaleMinSpace: 16
+            },
+            lineSmooth: Chartist.Interpolation.cardinal({
+                tension: 0
+            }),
+            low: 0,
+            high: 10, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+        }
+
+      var monthDeathsChart = new Chartist.Line('#monthDeathsChart', dataMonthDeathsChart, optionsMonthDeathsChart);
+
+      this.startAnimationForLineChart(monthDeathsChart);
+
+    
+      /* ----------==========     Last Week Deaths    ==========---------- */
+
+      var dataWeekDeathsChart = {
+        labels: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
+        series: [
+          [4, 5.154, 3.621, 2.926, 4.288, 5.647, 4.586]
+
+        ]
+      };
+      var optionsWeekDeathsChart = {
+          axisX: {
+              showGrid: false
+          },
+          axisY: {
+            offset: 60,
+            labelInterpolationFnc: function(value) {
+              return value + ' K'
+            },
+          },
+          low: 1,
+          high: 8,
+          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
+      };
+
+      var weekDeathsChart = new Chartist.Bar('#weekDeathsChart', dataWeekDeathsChart, optionsWeekDeathsChart, responsiveOptions);
+
+      this.startAnimationForBarChart(weekDeathsChart);
   }
 
 }

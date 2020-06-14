@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Component} from '@angular/core';
 import { ChartModule, MapChart } from 'angular-highcharts';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { forkJoin, of } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
 import { NullTemplateVisitor } from '@angular/compiler';
